@@ -14,10 +14,10 @@ const int minus=-1111; // 未計算に入るわかりやすい数字
 const int inf=7777; // あり得ない大きい数字
 int coinvalue[coinkind]={1,2,4,8,16,32}; // 各硬貨の額
 int memo[imax]; // メモ化の本体
-int hit=0; // 残額が0になった組合せ数
+int hit=0; // 残額が0になった組合せ
 int minnum=0; // 最小支払い枚数
 int answer; // 返り値格納
-int k,l,o; // テスト用変数
+int k,l,o; // テスト用
 
 
 int rec(int j,int m){
@@ -29,7 +29,7 @@ int rec(int j,int m){
         int result = inf;
         for(int i = coinkind-1; i >=0; i--){
             if(m - coinvalue[i] >= 0){
-                if (result > rec(j+1,m - coinvalue[i])+1){
+                if (result > rec(j+1,m - coinvalue[i])+1){ // 比較して小さい方を返す
                     k++,
                     result = rec(j+1,m - coinvalue[i])+1;
                 } else {
@@ -62,11 +62,13 @@ int main(int argc, const char * argv[])
         
         answer=minChange(imax);
         // 出力
+        /*
         for (int i=0;i<imax;i++){
             NSLog(@"memo%d:%d",i,memo[i]);
         }
+        */
         NSLog(@"HIT数%d",hit);
-        NSLog(@"変数K %d,L %d,O %d",k,l,o);
+        //NSLog(@"変数K %d,L %d,O %d",k,l,o);
         NSLog(@"最小支払い枚数は%d",answer);
     }
     return 0;
